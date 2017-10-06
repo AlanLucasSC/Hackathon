@@ -21,7 +21,6 @@ class CreateNotificationsTable extends Migration
             $table->string('type');
 
             $table->integer('organization_id')->unsigned();
-            
             $table->timestamps();
         });
     }

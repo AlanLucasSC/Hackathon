@@ -21,6 +21,7 @@ class CreatePersonsTable extends Migration
             
             $table->integer('organization_id')->unsigned(); 
             
+
             $table->timestamps();
         });
     }
