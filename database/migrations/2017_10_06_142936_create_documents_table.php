@@ -19,7 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->string('document_number');
             $table->date('expiration_date');
 
-            $table->string('document_type_id')->unsigned();
+            $table->integer('document_type_id')->unsigned();
             
             $table->timestamps();
         });
