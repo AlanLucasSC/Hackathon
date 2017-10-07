@@ -15,11 +15,13 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('comment');
             $table->string('url');
             $table->string('document_number');
             $table->date('expiration_date');
 
             $table->integer('document_type_id')->unsigned();
+            $table->integer('organization_id')->unsigned();
             
             $table->timestamps();
         });

@@ -8,6 +8,11 @@ class Document extends Model
 {
     public function document_type()
     {
-        return $this->hasOne(App\Document_Type::class);
+        return $this->belongsTo(DocumentType::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 }

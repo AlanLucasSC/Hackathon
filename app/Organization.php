@@ -8,16 +8,21 @@ class Organization extends Model
 {
     public function notifications()
     {
-        return $this->hasMany(App\Notification::class);
+        return $this->hasMany(Notification::class);
     }
 
     public function address()
     {
-        return $this->hasOne(App\Address::class);
+        return $this->belongsTo(Address::class);
     }
 
-    public function persons()
+    public function people()
     {
-        return $this->hasMany(App\Person::class);
+        return $this->hasMany(Person::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
     }
 }

@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('documents', 'DocumentController');
+});
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('organizations', 'OrganizationController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

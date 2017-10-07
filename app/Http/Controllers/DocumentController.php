@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use App\Document;
+use App\DocumentType;
+use App\Organization;
 
 class DocumentController extends Controller
 {
@@ -23,7 +28,9 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $organizations = Organization::all();
+        $document_types = DocumentType::all();
+        return view('documents.create', compact('organizations', 'document_types'));
     }
 
     /**
@@ -34,7 +41,21 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'document' => 'required|file'
+         ]);
+        $document = new Document;
+        $file = $request->file('document');
+        $document->url = $file->store('document');
+        $document->document_number = $request->document_number;
+        $document->expiration_date = $request->expiration_date;
+        $document->comment = $request->comment;
+
+        $document->organization()->associate(Organization::first());
+        $document->document_type()->associate(DocumentType::first());
+        $document->save();
+
+        return view('welcome');
     }
 
     /**
@@ -45,7 +66,10 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        //
+        $documents = Document::all();
+        $organizations = Organization::all();
+
+        return view('documents.show', compact('documents', 'organizations'));
     }
 
     /**

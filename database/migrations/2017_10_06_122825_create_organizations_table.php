@@ -20,6 +20,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('cnpj');
             $table->string('social_reason');
             $table->string('state_inscription');
+            $table->date('last_visit_date');
 
             $table->integer('address_id')->unsigned();
             

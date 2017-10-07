@@ -13,14 +13,14 @@ class CreatePersonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('cpf');
             $table->string('rg');
-            
-            $table->integer('organization_id')->unsigned(); 
-            
+
+            $table->integer('organization_id')->unsigned();
+
 
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreatePersonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('people');
     }
 }

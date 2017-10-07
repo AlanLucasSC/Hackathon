@@ -17,7 +17,7 @@ class ForeignKeys extends Migration
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
 
-        Schema::table('persons', function (Blueprint $table){
+        Schema::table('people', function (Blueprint $table){
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
 
@@ -27,6 +27,7 @@ class ForeignKeys extends Migration
 
         Schema::table('documents', function (Blueprint $table){
             $table->foreign('document_type_id')->references('id')->on('document_types');
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 
@@ -41,7 +42,7 @@ class ForeignKeys extends Migration
             $table->dropForeign(['organization_id']);
         });
 
-        Schema::table('persons', function (Blueprint $table){
+        Schema::table('people', function (Blueprint $table){
             $table->dropForeign(['organization_id']);
         });
 
@@ -50,7 +51,7 @@ class ForeignKeys extends Migration
         });
 
         Schema::table('documents', function (Blueprint $table){
-            $table->dropForeign('document_type_id');
+            $table->dropForeign(['document_type_id', 'organization_id']);
         });
     }
 }
