@@ -1,19 +1,13 @@
 @extends('layouts.app');
 
 @section('content')
-    <h1>Adicionar arquivo</h1>
-    @if (count($errors) > 0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+    <h1>Adicionar Documento</h1>
+
     <form method= "POST" action="{{ route('documents.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <span> Data de expiração: <input type="date" name="expiration_date"></span></br>
         <span>Organização:
-        <select>
+        <select name="organization"></select>
         @foreach($organizations as $organization) 
             <option value="{{ $organization->id }}"> {{ $organization->name }} </option>
         @endforeach
@@ -21,7 +15,7 @@
         </span>
         <span> Número do documento: <input type="text" name="document_number"></span>
         <span> Tipo do documento: 
-        <select>
+        <select name="document_type">
         @foreach($document_types as $doc_type) 
             <option value="{{ $doc_type->id }}"> {{ $doc_type->name }} </option>
         @endforeach

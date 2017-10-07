@@ -29,6 +29,9 @@ class ForeignKeys extends Migration
             $table->foreign('document_type_id')->references('id')->on('document_types');
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
+        Schema::table('verify_documents', function (Blueprint $table){
+            $table->foreign('organization_id')->references('id')->on('organizations');
+        });
     }
 
     /**
@@ -52,6 +55,9 @@ class ForeignKeys extends Migration
 
         Schema::table('documents', function (Blueprint $table){
             $table->dropForeign(['document_type_id', 'organization_id']);
+        });
+        Schema::table('verify_documents', function (Blueprint $table){
+            $table->dropForeign(['organization_id']);
         });
     }
 }

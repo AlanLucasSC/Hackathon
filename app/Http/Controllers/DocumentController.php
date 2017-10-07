@@ -18,7 +18,10 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $documents = Document::all();
+        $organizations = Organization::all();
+
+        return view('documents.index', compact('documents', 'organizations'));
     }
 
     /**
@@ -51,8 +54,8 @@ class DocumentController extends Controller
         $document->expiration_date = $request->expiration_date;
         $document->comment = $request->comment;
 
-        $document->organization()->associate(Organization::first());
-        $document->document_type()->associate(DocumentType::first());
+        $document->organization()->associate(Organization::find($request->organization));
+        $document->document_type()->associate(DocumentType::find($request->document_type));
         $document->save();
 
         return view('welcome');
@@ -66,10 +69,9 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        $documents = Document::all();
-        $organizations = Organization::all();
+        $document = Document::find($id);
 
-        return view('documents.show', compact('documents', 'organizations'));
+        return view('documents.show', compact('document'));
     }
 
     /**

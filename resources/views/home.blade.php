@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <h1>
+                        {{dd($busca)}}
+                    </h1>
                 </div>
             </div>
         </div>
