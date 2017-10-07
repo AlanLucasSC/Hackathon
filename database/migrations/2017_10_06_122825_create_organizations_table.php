@@ -20,9 +20,10 @@ class CreateOrganizationsTable extends Migration
             $table->string('cnpj');
             $table->string('social_reason');
             $table->string('state_inscription');
+            $table->date('last_visit_date');
 
-            $table->integer('person_id')->unsigned(); // Owner of the organization
             $table->integer('address_id')->unsigned();
+            
             $table->timestamps();
         });
     }
@@ -34,6 +35,7 @@ class CreateOrganizationsTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('organizations');
     }
 }
